@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * function_name - putsO
  * main - Entry point
- * Return: Always 0
+ * function_name putsO
+ * Return: Always 0 (Success)
  */
 
 int main(void)
