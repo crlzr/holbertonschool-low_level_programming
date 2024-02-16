@@ -1,6 +1,10 @@
 #include <stdio.h>
 
-/*This is the entry point of the program. It doesn't take any parameters.*/
+/**
+ * function_name - putsO
+ * main - Entry point
+ * Return: Always 0
+ */
 
 int main(void)
 {
