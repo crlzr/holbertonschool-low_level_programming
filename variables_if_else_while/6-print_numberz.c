@@ -11,7 +11,6 @@ int main(void)
 int number = 0;
 
 for (; number <= 9; number++)
-
 {
 	putchar(number);
 }
