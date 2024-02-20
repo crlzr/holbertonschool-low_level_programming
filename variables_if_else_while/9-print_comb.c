@@ -11,14 +11,16 @@ int main(void)
 
 int number = 48;
 
-while (number < 58)
+for (; number < 58; number++)
 {
 	putchar(number);
 
-	putchar(',');
+if (number < 57)
+{
+	putchar(44);
 
-	putchar(' ');
-	number++;
+	putchar(32);
+}
 }
 	putchar('\n');
 	return (0);
