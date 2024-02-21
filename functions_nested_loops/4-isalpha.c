@@ -1,4 +1,4 @@
-#include <main.h>
+#include "main.h"
 
 /**
  * function _isalpha - checks if int c is a letter
