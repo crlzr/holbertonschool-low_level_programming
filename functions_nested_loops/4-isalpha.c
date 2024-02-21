@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * function _isalpha - checks if int c is a letter
+ *  _isalpha - checks if int c is a letter
  * @c: an int that is passed from the main file
  * Return: 0 (success)
  */
