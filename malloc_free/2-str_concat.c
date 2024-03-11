@@ -1,60 +1,71 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * *str_concat - concatenates two strings
- * @s1: string 1
- * @s2: string 2
- * Return: NULL if fail, otherwise concatenated string
+ * str_len - A function that finds the length of a string
+ *
+ * @s: string length is to be found
+ *
+ * Return: string length
  */
+int str_len(char *s)
+{
+	int x;
 
+	x = 0;
+
+	while (s[x] != '\0')
+	{
+		x = x + 1;
+	}
+	return (x);
+}
+
+/**
+ * str_concat - A function that concatenates two strings
+ *
+ * @s1: string 1 to be concatenated
+ * @s2: string 2 to be concatenated
+ *
+ * Return: NULL if failure, else concatenation of s1 and s2.
+ */
 char *str_concat(char *s1, char *s2)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int size;
-	char *s;
+	int i;
+	int j;
+	int k;
+	char *concat;
 
-	if (s1 == NULL && s2 == NULL)
+	if (s1 == NULL)
+	{
+		s1 = "";
+	}
+	if (s2 == NULL)
+	{
+		s2 = "";
+	}
+
+	concat = malloc(str_len(s1) + str_len(s2) + 1);
+	i = 0;
+	j = 0;
+	k = 0;
+
+	if (concat == NULL)
 	{
 		return (NULL);
 	}
-
 	while (s1[i] != '\0')
 	{
-		i++;
+		concat[k] = s1[i];
+		i = i + 1;
+		k = k + 1;
 	}
-
 	while (s2[j] != '\0')
 	{
-		j++;
+		concat[k] = s2[j];
+		j = j + 1;
+		k = k + 1;
 	}
-
-	size = (i + j + 1);
-
-	s = malloc(size * sizeof(char));
-
-	if (s == NULL)
-	{
-		return (NULL);
-	}
-
-	while (k < i)
-	{
-		s[k] = s1[k];
-		k++;
-
-	}
-
-	while (k < size - 1)
-	{
-		s[k] = s2[k - i];
-		k++;
-	}
-
-	s[size - 1] = '\0';
-
-	return (s);
+	concat[k] = '\0';
+	return (concat);
 }
