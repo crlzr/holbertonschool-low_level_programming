@@ -31,6 +31,7 @@ int **alloc_grid(int width, int height)
 		grid[i] = malloc(sizeof(int) * width);
 		if (grid[i] == NULL)
 		{
+			j = 0;
 			while (j < i)
 			{
 		/* free memory of previously allocated row to avoid memory leaks */
@@ -38,11 +39,7 @@ int **alloc_grid(int width, int height)
 				j++;
 			}
 		}
-		/**
-		 *  if malloc succeeds, function initialises
-		 * both to 0 to iterate each row and col
-		 */
-
+		j = 0;
 		while (j < width)
 		{
 			grid[i][j] = 0;
