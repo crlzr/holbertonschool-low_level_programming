@@ -5,9 +5,7 @@
 
 /**
  * print_dog - prints the details of the dog and owner
- * @name: name of the dog
- * @age: age of the dog
- * @owner: owner of the dog
+ * @d: structure d
  */
 
 void print_dog(struct dog *d)
@@ -15,15 +13,24 @@ void print_dog(struct dog *d)
 
 	if (d != NULL)
 	{
-		if (d->name == NULL || d->age == 0
-		|| d->owner == NULL)
+		if (d->name == NULL)
 		{
-			printf("nil\n");
+			printf("Name: (nil)\n");
 		}
 		else
 		{
-			printf("Name: %s, Age: %f, Owner: %s \n", d->name, d->age, d->owner);
+			printf("Name: %s\n", d->name);
 		}
-	printf("\n");	
+
+		printf("Age: %f\n", d->age);
+
+		if (d->owner == NULL)
+		{
+			printf("Owner: (nil)\n");
+		}
+		else
+		{
+			printf("Owner: %s\n", d->owner);
+		}
 	}
 }
