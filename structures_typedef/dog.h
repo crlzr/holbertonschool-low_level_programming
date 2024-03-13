@@ -2,13 +2,13 @@
 #define MAIN_H
 
 /**
- * struct dog - this is a dog structure file
+ * struct dog_t - this is a dog structure file
  * @name: name of the dog
  * @age: age of the dog
  * @owner: owner of the dog
  */
 
-struct dog
+struct dog_t
 {
 char *name;
 float age;
