@@ -6,7 +6,8 @@
  * @array: arry with elements
  * @size: number of elements in the array
  * @cmp: pointer to a function
- *
+ * Return: int_index: returns index of first element for which
+ * cmp function does not return 0
  */
 
 int int_index(int *array, int size, int (*cmp)(int))
