@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-	int result; 
+	int result;
 	int (*operation)(int, int);
 
 	if (argc != 4)
@@ -35,6 +35,6 @@ int main(int argc, char *argv[])
 	result = operation(atoi(argv[1]), atoi(argv[3]));
 
 	printf("%d\n", result);
-	
+
 	return (0);
 }
