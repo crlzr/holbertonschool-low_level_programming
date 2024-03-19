@@ -3,25 +3,28 @@
 #include <string.h>
 
 /**
- * main - main function 
+ * main - main function
+ * @argv: argument vector
+ * @argc: argument counter
  * Return: 0 on success
  *
  */
 
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	if (argc != 4)
 	{
 		printf("Error\n");
-		exit (98);
+		exit(98);
 		return (1);
 	}
 
 	if ((*argv[2] == '/' || *argv[2] == '%') && atoi(argv[3]) == 0)
 	{
 		printf("Error\n");
-		exit (100);
+		exit(100);
 		return (1);
 	}
+	return(0);
 }
