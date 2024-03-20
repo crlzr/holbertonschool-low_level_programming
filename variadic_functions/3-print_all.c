@@ -3,106 +3,103 @@
 #include "variadic_functions.h"
 
 /**
- * print_all - check the code
- * @format: string containing all the format chars
+ * print_char - prints a char
+ * @args: the char to be printed
  *
- * Return: nothing.
  */
-void print_all(const char * const format, ...)
+void print_char(va_list *args)
 {
-	op_t ops[] = {
-		{"c", print_char},
-		{"i", print_int},
-		{"f", print_float},
-		{"s", print_string}
-	};
-	va_list list;
-	int i = 0;
-	int j = 0;
-	int printed_one = 0;
+	char string;
 
-	va_start(list, format);
-		while (format != NULL && format[i] != '\0')
-		{
-			while (j < 4)
-			{
-				if (*ops[j].t == format[i])
-				{
-					/**
-					 * printf("match found - %c\n", format[i]);
-					 */
+	string = va_arg(*args, int);
 
-					if (printed_one == 1)
-						printf(", ");
-
-					ops[j].f(&list);
-					printed_one = 1;
-				}
-				j = j + 1;
-			}
-			j = 0;
-			i = i + 1;
-		}
-	va_end(list);
-	printf("\n");
+	printf("%c", string);
 }
 
 /**
- * print_char - prints a char
- * @list: pointer to list
+ * print_string - prints a string
+ * @args: the string to be printed
  *
- * Return : nothing
  */
-void print_char(va_list *list)
+void print_string(va_list *args)
 {
-	char c;
+	char *string;
 
-	c = va_arg(*list, int);
+	string = va_arg(*args, char *);
 
-	printf("%c", c);
+	if (string == NULL)
+		string = "(nil)";
+	printf("%s", string);
 }
 
 /**
  * print_int - prints an int
- * @list: pointer to list
+ * @args: the int to be printed
  *
- * Return : nothing
  */
-void print_int(va_list *list)
+void print_int(va_list *args)
 {
-	int x;
+	int number;
 
-	x = va_arg(*list, int);
+	number = va_arg(*args, int);
 
-	printf("%d", x);
+	printf("%i", number);
 }
 
 /**
  * print_float - prints a float
- * @list: pointer to list
+ * @args: the float to be printed
  *
- * Return : nothing
  */
-void print_float(va_list *list)
+void print_float(va_list *args)
 {
-	double f;
+	double number;
 
-	f = va_arg(*list, double);
+	number = va_arg(*args, double);
 
-	printf("%f", f);
+	printf("%f", number);
 }
 
 /**
- * print_string - does what it says
- * @list: pointer to list
+ * print_all - prints anything
+ * @format: the format of what is to be printed
  *
- * Return : nothing
  */
-void print_string(va_list *list)
+void print_all(const char * const format, ...)
 {
-	char *s;
+	operation op[] = {
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string}
+	};
+	int ii = 0;
+	int jj;
+	char *separator;
+	va_list args;
 
-	s = va_arg(*list, char *);
+	va_start(args, format);
+	separator = "";
 
-	printf("%s", (s == NULL) ? "(nil)" : s);
+	while ((format != NULL) && (format[ii] != '\0'))
+	{
+		jj = 0;
+		while ((format[ii] != op[jj].type) && (jj < 4))
+		{
+			jj += 1;
+		}
+
+		if (jj < 4)
+		{
+			printf("%s", separator);
+			op[jj].func(&args);
+			separator = ", ";
+		}
+
+		ii += 1;
+	}
+
+	va_end(args);
+
+	printf("\n");
 }
