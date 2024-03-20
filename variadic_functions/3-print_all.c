@@ -5,7 +5,7 @@
 /**
  * print_all - check the code
  * @format: string containing all the format chars
- *
+ *.
  * Return: nothing.
  */
 void print_all(const char * const format, ...)
