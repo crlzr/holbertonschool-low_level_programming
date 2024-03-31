@@ -6,6 +6,7 @@
 /**
  * struct list_node - struct re singly linked list
  * @str: strings to be printed
+ * @len: length of the data
  * @next: points to the next node
  */
 typedef struct list_node
