@@ -2,6 +2,8 @@
 #define HEADER_FILE
 
 #include <stddef.h>
+#include <string.h>
+#include <stdio.h>
 
 /**
  * struct list_node - struct re singly linked list
@@ -20,7 +22,6 @@ typedef struct list_node
 size_t print_list(const list_t *h);
 size_t list_len(const list_t *h);
 list_t *add_node(list_t **head, const char *str);
-
 #endif
 
 
