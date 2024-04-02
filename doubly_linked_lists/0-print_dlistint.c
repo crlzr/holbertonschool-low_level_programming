@@ -6,7 +6,7 @@
 /**
  * print_dlistint - function to print all elements of list
  * @h: head pointer
- * Return - no. of elements
+ * Return: no. of elements
  */
 
 size_t print_dlistint(const dlistint_t *h)
