@@ -1,6 +1,8 @@
 #ifndef HEADER
 #define HEADER
 
+#include <stddef.h>
+
 /**
  * struct dlistint_s - doubly linked list
  * @n: integer
