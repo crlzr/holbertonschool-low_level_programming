@@ -9,27 +9,17 @@
 
 unsigned int binary_to_uint(const char *b)
 {
+	unsigned int i = 0, c;
 
-	int len = 0, i;
-	unsigned int sum = 0;
-
-	if (b == NULL)
-		return (sum);
-
-	while (b[len] != '\0')
-		len++;
-
-	i = 0;
-	while (b[i])
+	if (b == NULL) /*looking b contains something*/
+		return (0);
+	for (c = 0; b[c] != '\0'; c++) /*verifying the sting only have 0 and 1*/
 	{
-		if ((b[i] != '0') && (b[i] != '1'))
-			return (sum);
+		if (b[c] != 48 && b[c] != 49)
+			return (0);
 
-		if (b[i] == '1')
-			sum += (1 * (1 << len));
-		i++;
-		len--;
+		i = (i * 2) + (b[c] - '0');
 	}
 
-	return (sum);
+	return (i);
 }
