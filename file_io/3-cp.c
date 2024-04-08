@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stddef.h>
 /**
  * main - check the code
  * @ac: argc
