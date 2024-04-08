@@ -17,7 +17,7 @@ int create_file(const char *filename, char *text_content)
 
 	int filedescriptor;
 	char *buffer = malloc(strlen(text_content) + 1);
-	size_t bytes_written;
+	int bytes_written;
 
 	if (buffer == NULL)
 	{
