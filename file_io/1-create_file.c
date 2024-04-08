@@ -16,13 +16,7 @@ int create_file(const char *filename, char *text_content)
 {
 
 	int filedescriptor;
-	char *buffer = malloc(strlen(text_content) + 1);
 	int bytes_written;
-
-	if (buffer == NULL)
-	{
-		return (0);
-	}
 
 	if (filename == NULL)
 	{
@@ -35,15 +29,20 @@ int create_file(const char *filename, char *text_content)
 	{
 		return (-1);
 	}
+
+	if (text_content == NULL)
+	{
+		close(filedescriptor);
+		return (1);
+	}
 	
-	bytes_written = write(filedescriptor, buffer, strlen(buffer));
+	bytes_written = write(filedescriptor, text_content, strlen(text_content));
 
 	if (bytes_written == -1)
 	{
+		close(filedescriptor);
 		return (-1);
 	}
 	
-	close(filedescriptor);
-	free(buffer);
 	return(1);
 }	
