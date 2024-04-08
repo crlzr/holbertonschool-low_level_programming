@@ -7,9 +7,9 @@ int main(int argc, char *argv[])
 {
     int file_from;
     int file_to;
-    int bytes_read; // Using ssize_t for read/write counts
     int bytes_written;
     char buffer[1024];
+    int size = 1024;
 
     if (argc != 3)
     {
@@ -24,38 +24,43 @@ int main(int argc, char *argv[])
         exit(98);
     }
 
-    file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+    file_to = open(argv[2], O_WRONLY | O_CREAT, 0664);
     if (file_to == -1)
     {
         dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+        close(file_from);
         exit(99);
     }
 
-    while ((bytes_read = read(file_from, buffer, sizeof(buffer))) > 0)
+    while ((size = read(file_from, buffer, 1024)) > 0)
     {
-        bytes_written = write(file_to, buffer, bytes_read);
+        bytes_written = write(file_to, buffer, size);
         if (bytes_written == -1)
         {
             dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+            close(file_from);
+            close(file_to);
             exit(99);
         }
     }
 
-    if (bytes_read == -1)
+    if (size == -1)
     {
         dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+        close(file_from);
+        close(file_to);
         exit(98);
     }
 
     if (close(file_from) == -1)
     {
-        dprintf(STDERR_FILENO, "Error: Can't close file descriptor for file %s\n", argv[1]);
+        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
         exit(100);
     }
 
     if (close(file_to) == -1)
     {
-        dprintf(STDERR_FILENO, "Error: Can't close file descriptor for file %s\n", argv[2]);
+        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
         exit(100);
     }
 
