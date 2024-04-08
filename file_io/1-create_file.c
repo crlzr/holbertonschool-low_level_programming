@@ -16,33 +16,27 @@ int create_file(const char *filename, char *text_content)
 {
 
 	int filedescriptor;
-	int bytes_written;
+	int i = 0;
 
 	if (filename == NULL)
 	{
 		return (-1);
 	}
 
-	filedescriptor = open(filename, O_CREAT | O_WRONLY | O_TRUNC | 0600);
-
-	if (filedescriptor == -1)
-	{
-		return (-1);
-	}
-
 	if (text_content == NULL)
 	{
-		close(filedescriptor);
 		return (1);
 	}
-	
-	bytes_written = write(filedescriptor, text_content, strlen(text_content));
 
-	if (bytes_written == -1)
+	while (text_content[i] != '\0')
 	{
-		close(filedescriptor);
-		return (-1);
+		i++;
 	}
-	
-	return(1);
-}	
+
+	filedescriptor = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
+
+	write(filedescriptor, text_content, i);
+
+	return (1);
+}
+
